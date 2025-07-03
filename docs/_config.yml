@@ -21,7 +21,7 @@ sass:
 
 minima:
   skin: auto  # classic or dark, ignore solarized
-  show_excerpts: true
+
 #
 #   Minima date format.
 #     The default value is "%b %d, %Y" (e.g. Nov 14, 2023).
@@ -29,3 +29,4 @@ minima:
 #  date_format: "%b-%d-%Y"
   date_format: "%A %B %d, %Y"
 
+show_excerpts: true
