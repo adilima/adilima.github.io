@@ -1,0 +1,31 @@
+
+title: FX. Adi Lima Personal Site
+url: "https://adilima.github.io"
+author: F.X. Adi Lima
+description: >
+  This is Adi Lima's Personal Site on Github.
+  Di repo ini Anda hanya akan menemukan kode-kode 
+  dalam bahasa C/C++, Typescript, Javascript atau yang lain.
+  Selain itu juga ada cerita-cerita silat, yang umumnya 
+  mengambil tema Dinasti Yuan.
+
+theme: minima
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+sass:
+  quiet_deps: true
+  silence_deprecations: [import]
+
+minima:
+  skin: auto  # classic or dark, ignore solarized
+  show_excerpts: true
+#
+#   Minima date format.
+#     The default value is "%b %d, %Y" (e.g. Nov 14, 2023).
+#     Refer to https://shopify.github.io/liquid/filters/date/ for valid values
+#  date_format: "%b-%d-%Y"
+  date_format: "%A %B %d, %Y"
+
