@@ -161,8 +161,6 @@ void adi::editor::activate() {
     gtk_window_set_title(window, "C++ Editor");
     gtk_window_set_default_size(window, 640, 480);
 
-    // g_signal_connect(btn, "clicked", G_CALLBACK(on_btn_open), this);
-
     obj = gtk_scrolled_window_new();
     scroll = GTK_SCROLLED_WINDOW(obj);
     gtk_scrolled_window_set_policy(scroll, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -195,6 +193,16 @@ void adi::editor::onWindowDestroyed() {
 }
 
 void adi::editor::startup() {
+    GdkDisplay* display = gdk_display_get_default ();
+    GtkCssProvider* provider = gtk_css_provider_new();
+
+    gtk_style_context_add_provider_for_display(display, 
+        GTK_STYLE_PROVIDER(provider), 
+        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+    const char* css_data = "textview {font: 12pt \"Consolas\";}";
+
+    gtk_css_provider_load_from_string(provider, css_data);
     gtk_window_set_default_icon_name("lambda");
 }
 
@@ -278,28 +286,6 @@ void adi::editor::initView() {
     gtk_source_view_set_show_line_numbers(view, true);
 
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(view), GTK_WRAP_WORD);
-
-    // Quoted from cs-editor.c
-    GdkDisplay* display = gdk_display_get_default ();
-    GtkCssProvider* provider = gtk_css_provider_new();
-
-    ///////////////////////////////////////////
-    // In Gtk4, the display dont't have screen.
-    // We use this instead.
-    //////////////////////////////////////////// 
-    gtk_style_context_add_provider_for_display(display, 
-        GTK_STYLE_PROVIDER(provider), 
-        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-    const char* css_data = "textview {font: 12pt \"Consolas\";}";
-
-    ////////////////////////////////////////////////////////////////////////////////////
-    // Note: This one is deprecated in Gtk 4
-    //   GError* error = NULL;
-    //   gtk_css_provider_load_from_file(provider, g_file_new_for_path("my.css"), &error);
-    /////////////////////////////////////////////////////////////////////////////////////
-
-    gtk_css_provider_load_from_string(provider, css_data);
 
     GtkSourceStyleSchemeManager* ssm = gtk_source_style_scheme_manager_get_default();
     GtkSourceStyleScheme* ss = gtk_source_style_scheme_manager_get_scheme(ssm, "Adwaita-dark");
